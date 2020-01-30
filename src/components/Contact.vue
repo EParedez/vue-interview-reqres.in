@@ -29,7 +29,7 @@
                 </v-btn>
 
                 <v-btn
-
+                        @click="deleteContact(user.id)"
                         text
                         icon
                 >
@@ -39,31 +39,32 @@
             </v-card-actions>
         </v-card>
 
-        <v-dialog v-model="dialogShow" persistent max-width="600px">
-            <v-card>
-                <v-card-title>
-                    <span class="headline">Contact </span>
-                </v-card-title>
-                <v-card-text>
-                    <ContactForm v-bind:contact="user" />
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn  text @click="dialogShow = false">Close</v-btn>
-                    <v-btn text @click="dialogShow = false">Save</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+<!--        <v-dialog v-model="dialogShow" persistent max-width="600px">-->
+<!--            <v-card>-->
+<!--                <v-card-title>-->
+<!--                    <span class="headline">Contact </span>-->
+<!--                </v-card-title>-->
+<!--                <v-card-text>-->
+<!--                    <ContactForm v-bind:contact="user" />-->
+<!--                </v-card-text>-->
+<!--                <v-card-actions>-->
+<!--                    <v-spacer></v-spacer>-->
+<!--                    <v-btn  text @click="dialogShow = false">Close</v-btn>-->
+<!--                    <v-btn text @click="dialogShow = false">Save</v-btn>-->
+<!--                </v-card-actions>-->
+<!--            </v-card>-->
+<!--        </v-dialog>-->
+        <DialogForm v-bind:contact="user" v-bind:show="dialogShow" v-on:eventoModal="eventModal" />
     </div>
 
 </template>
 
 <script>
-    import ContactForm from "../components/ContactForm";
+     import DialogForm from "../components/DialogForm";
     export default {
         props: ['user'],
         name: "Contact",
-        components: {ContactForm},
+        components: {DialogForm},
         data() {
             return {
                 dialogShow: false
@@ -73,6 +74,13 @@
             show(id){
                 console.log(id);
                 this.$router.push({ name: 'contact', params: { id: id }})
+            }
+            ,
+            deleteContact(id){
+                this.$store.commit('REMOVE_CONTACT', id);
+            },
+            eventModal(val){
+                this.dialogShow = val;
             }
         }
     }

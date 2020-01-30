@@ -35,12 +35,20 @@
             contact_real : function () {
                 if(this.contact == undefined){
                     return  {
+                        id: 0,
                         first_name: '',
                         last_name: '',
-                        email: ''
+                        email: '',
+                        avatar: ''
                     }
                 }
-                return this.contact;
+                return   {
+                    id: this.contact.id,
+                    first_name: this.contact.first_name,
+                    last_name: this.contact.last_name,
+                    email: this.contact.email,
+                    avatar: this.contact.avatar
+                }
             }
         }
     }

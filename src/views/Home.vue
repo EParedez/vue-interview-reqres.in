@@ -1,6 +1,6 @@
 <template>
 
-    <div justify="center">
+    <div class="content" justify="center">
 
         <ContactList />
 
@@ -8,7 +8,7 @@
             <v-icon >mdi-plus</v-icon>
         </v-btn>
 
-        <DialogForm v-bind:show="dialogShow" />
+        <DialogForm v-bind:contact="undefined" v-bind:show="dialogShow" v-on:eventoModal="eventModal" />
     </div>
 
 </template>
@@ -19,7 +19,6 @@
 
 <script>
   import ContactList from "../components/ContactList";
-  // import ContactForm from "../components/ContactForm";
   import DialogForm from "../components/DialogForm";
   export default {
       components: {DialogForm, ContactList},
@@ -32,7 +31,16 @@
 
       },
       methods: {
-
+          eventModal(event){
+              console.log(event);
+              this.dialogShow = event;
+          }
       }
   }
 </script>
+
+<style>
+    .content {
+        margin-top: 20px;
+    }
+</style>

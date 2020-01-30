@@ -12,7 +12,7 @@
         components: {Contact},
         data(){
             return {
-                users: []
+
             }
         },
         mounted() {
@@ -23,9 +23,13 @@
                 let context = this;
                 this.Get(null, '/users', null).then(p=> {
                     console.log(p)
-                    context.users = p.data.data;
-                    context.$store.commit('SET_CONTACTS', p.data.data);
+                    context.$store.commit('SET_CONTACTS', p.data.data.slice());
                 }).catch(err => console.log(err))
+            }
+        },
+        computed: {
+            users: function () {
+                return this.$store.state.contacts;
             }
         }
     }

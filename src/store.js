@@ -28,7 +28,7 @@ export default new Vuex.Store({
     [UPDATE_CONTACT](state, param){
       state.contacts = [
         ...state.contacts.filter(element => element.id !== param.id),
-        param.contact
+        param
       ]
     },
   },
