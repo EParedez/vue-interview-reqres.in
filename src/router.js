@@ -27,7 +27,7 @@ export default new Router({
       path: '/',
       name: 'root',
       meta: { layout: 'LayoutLogin'},
-      component: Login
+      component: Home
     },
     {
       path: '/login',

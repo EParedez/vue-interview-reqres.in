@@ -3,30 +3,28 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-
 import '@/assets/css/style.css'
 import Vuelidate from 'vuelidate'
-import bootstrapVue from 'bootstrap-vue'
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSadTear, faHome, faChevronLeft, faFilePdf, faFileExcel, faSignInAlt, faListAlt, faUser, faUserPlus, faUserMinus, faUserEdit, faUserLock, faUserSlash, faListOl, faUserCircle, faInfo, faPencilAlt, faTimes, faQuestion, faSearch, faTrashAlt, faEdit, faSave, faPlusCircle, faTimesCircle, faAngleRight, faSearchPlus, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import Element from 'element-ui'
-import locale from 'element-ui/lib/locale/lang/es'
-import 'element-ui/lib/theme-chalk/index.css'
+
+import '@mdi/font/css/materialdesignicons.css'
 
 import Layout1 from './layouts/Layout1.vue';
 import LayoutDefault from './layouts/LayoutDefault.vue';
 import LayoutLogin from './layouts/LayoutLogin.vue';
 import ServicioWS from './plugins/serviceWS'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
+
 import './registerServiceWorker'
 
-Vue.use(bootstrapVue)
 Vue.use(bootstrap)
 Vue.use(Vuelidate)
-Vue.use(Element, {
-  locale
-})
 
 //axios
 Vue.use(ServicioWS)
