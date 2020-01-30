@@ -1,47 +1,74 @@
 <template>
-    <v-card
-            class="mx-auto"
-            max-width="300">
-        <v-img @click="show(user.id)"
-                class="white--text align-end"
-                height="200px"
-                v-bind:src="user.avatar"
-        >
-            <v-card-title></v-card-title>
-        </v-img>
+    <div>
 
-        <v-card-subtitle class="pb-0">{{user.first_name}} {{user.last_name}}</v-card-subtitle>
-
-        <v-card-text class="text--primary">
-            <div>{{user.email}}</div>
-        </v-card-text>
-
-        <v-card-actions>
-
-            <v-btn
-                    color="orange"
-                    text
-                    icon
+        <v-card
+                class="mx-auto"
+                max-width="300">
+            <v-img @click="show(user.id)"
+                   class="white--text align-end"
+                   height="200px"
+                   v-bind:src="user.avatar"
             >
-                <v-icon>mdi-pencil</v-icon>
-            </v-btn>
+                <v-card-title></v-card-title>
+            </v-img>
 
-            <v-btn
-                    color="red"
-                    text
-                    icon
-            >
-                <v-icon>mdi-delete</v-icon>
-            </v-btn>
+            <div class="pb-0">{{user.first_name}} {{user.last_name}}</div>
 
-        </v-card-actions>
-    </v-card>
+            <v-card-text class="text--primary">
+                <div>{{user.email}}</div>
+            </v-card-text>
+
+            <v-card-actions>
+
+                <v-btn
+                        @click="dialogShow=true"
+                        text
+                        icon
+                >
+                    <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+
+                <v-btn
+
+                        text
+                        icon
+                >
+                    <v-icon>mdi-delete</v-icon>
+                </v-btn>
+
+            </v-card-actions>
+        </v-card>
+
+        <v-dialog v-model="dialogShow" persistent max-width="600px">
+            <v-card>
+                <v-card-title>
+                    <span class="headline">Contact </span>
+                </v-card-title>
+                <v-card-text>
+                    <ContactForm v-bind:contact="user" />
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn  text @click="dialogShow = false">Close</v-btn>
+                    <v-btn text @click="dialogShow = false">Save</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+    </div>
+
 </template>
 
 <script>
+    import ContactForm from "../components/ContactForm";
     export default {
         props: ['user'],
         name: "Contact",
+        components: {ContactForm},
+        data() {
+            return {
+                dialogShow: false
+            }
+        },
         methods: {
             show(id){
                 console.log(id);
