@@ -1,9 +1,11 @@
 <template>
     <div>
 
-        <div v-for="user in users" v-bind:key="user.id">
-            <Contact v-bind:user="user"  />
-        </div>
+        <ContactList />
+
+        <v-btn class="mx-4" fab color="orange">
+            <v-icon >mdi-plus</v-icon>
+        </v-btn>
 
     </div>
 
@@ -14,26 +16,19 @@
 </style>
 
 <script>
-  import Contact from "../components/Contact";
+  import ContactList from "../components/ContactList";
   export default {
-      components: {Contact},
+      components: {ContactList},
       data(){
           return {
-              users: []
+
           }
       },
       mounted() {
-          this.getData();
+
       },
       methods: {
-          getData(){
-              let context = this;
-              this.Get('token', '/users', null).then(p=> {
-                  console.log(p)
-                  context.users = p.data.data;
-                  console.log(context.users)
-              }).catch(err => console.log(err))
-          }
+
       }
   }
 </script>

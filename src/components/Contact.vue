@@ -2,18 +2,18 @@
     <v-card
             class="mx-auto"
             max-width="300">
-        <v-img
+        <v-img @click="show(user.id)"
                 class="white--text align-end"
                 height="200px"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                v-bind:src="user.avatar"
         >
             <v-card-title></v-card-title>
         </v-img>
 
-        <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
+        <v-card-subtitle class="pb-0">{{user.first_name}} {{user.last_name}}</v-card-subtitle>
 
         <v-card-text class="text--primary">
-            <div>Whitsunday Island, Whitsunday Islands</div>
+            <div>{{user.email}}</div>
         </v-card-text>
 
         <v-card-actions>
@@ -41,10 +41,18 @@
 <script>
     export default {
         props: ['user'],
-        name: "Contact"
+        name: "Contact",
+        methods: {
+            show(id){
+                console.log(id);
+                this.$router.push({ name: 'contact', params: { id: id }})
+            }
+        }
     }
 </script>
 
 <style scoped>
-
+    v-img {
+        cursor: pointer;
+    }
 </style>

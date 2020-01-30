@@ -1,4 +1,4 @@
-# metales-vue-2
+# vue-interview-reqres.in
 
 ## Project setup
 ```

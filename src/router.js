@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Dashboard from './views/Dashboard.vue'
-import Login from './views/Login.vue'
 import Layouts from './views/Layouts.vue'
+import ContactDetail from "./views/ContactDetail";
 
 Vue.use(Router)
 
@@ -17,12 +16,7 @@ export default new Router({
       meta: { layout: 'LayoutLogin'},
       component: Home
     },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      meta: { layout: 'Layout1'},
-      component: Dashboard
-    },
+
     {
       path: '/',
       name: 'root',
@@ -30,10 +24,11 @@ export default new Router({
       component: Home
     },
     {
-      path: '/login',
-      name: 'login',
+      path: '/contact/:id',
+      name: 'contact',
+      props: true,
       meta: { layout: 'LayoutLogin'},
-      component: Login
+      component: ContactDetail
     },
 
     {
