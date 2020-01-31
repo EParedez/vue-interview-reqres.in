@@ -1,17 +1,20 @@
 <template>
     <div>
         <v-container>
-            <div>
+            <v-form
+                    ref="form"
+                    v-model="valid"
+            >
                 <div cols="12" sm="6" md="4">
-                    <v-text-field label="first name*" v-model="contact_real.first_name" required></v-text-field>
+                    <v-text-field label="first name*" :rules="firstNameRules" v-model="contact_real.first_name" required></v-text-field>
                 </div>
                 <div cols="12" sm="6" md="4">
-                    <v-text-field label="Last name*" v-model="contact_real.last_name" required> </v-text-field>
+                    <v-text-field label="Last name*" :rules="lastNameRules" v-model="contact_real.last_name" required> </v-text-field>
                 </div>
                 <div cols="12" sm="6" md="4">
-                    <v-text-field label="Email*" v-model="contact_real.email"  required> </v-text-field>
+                    <v-text-field label="Email*" :rules="emailRules" v-model="contact_real.email"  required> </v-text-field>
                 </div>
-            </div>
+            </v-form>
         </v-container>
         <small>*indicates required field</small>
     </div>
@@ -25,7 +28,19 @@
         name: "ContactForm",
         data() {
             return {
-
+                valid: true,
+                firstNameRules: [
+                    v => !!v || 'First Name is required',
+                    v => (v && v.length <= 20) || 'First Name must be less than 20 characters',
+                ],
+                lastNameRules: [
+                    v => !!v || 'Last Name is required',
+                    v => (v && v.length <= 20) || 'First Name must be less than 20 characters',
+                ],
+                emailRules: [
+                    v => !!v || 'Email is required',
+                    v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+                ],
             }
         },
         mounted() {
@@ -49,7 +64,13 @@
                     email: this.contact.email,
                     avatar: this.contact.avatar
                 }
+            },
+            form: function () {
+                return this.$refs.form;
             }
+        },
+        methods: {
+
         }
     }
 </script>

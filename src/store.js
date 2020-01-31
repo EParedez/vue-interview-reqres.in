@@ -14,7 +14,7 @@ export default new Vuex.Store({
   },
   mutations: {
     [SET_CONTACTS](state, contacts){
-      state.contacts = contacts;
+      state.contacts = contacts.sort((a, b) => b.id < a.id).slice();
     },
     [ADD_CONTACT](state, item){
       state.contacts.push(item);

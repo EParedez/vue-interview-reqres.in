@@ -4,7 +4,7 @@
 
         <ContactList />
 
-        <v-btn @click="dialogShow = true" class="mx-4" fab color="green">
+        <v-btn @click="dialogShow = true" class="mx-4 rigth" fab color="green">
             <v-icon >mdi-plus</v-icon>
         </v-btn>
 
@@ -42,5 +42,9 @@
 <style>
     .content {
         margin-top: 20px;
+    }
+
+    .rigth{
+        float: right;
     }
 </style>

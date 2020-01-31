@@ -21,8 +21,7 @@
         methods: {
             getData(){
                 let context = this;
-                this.Get(null, '/users', null).then(p=> {
-                    console.log(p)
+                this.Get(null, '/users?page=1&per_page=12', null).then(p=> {
                     context.$store.commit('SET_CONTACTS', p.data.data.slice());
                 }).catch(err => console.log(err))
             }
